@@ -1,0 +1,21 @@
+.nameForm,
+.greeting {
+  display: none;
+}
+.showing {
+  display: block;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+  }
+  to {
+  }
+}

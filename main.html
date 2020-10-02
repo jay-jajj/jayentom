@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- title에 이미지 아이콘을 삽입하기위해 쓴것이다. -->
+    <link rel="shortcut icon" type="image⁄x-icon" href="images/favicon.ico" />
+    <!--css파일 연결 -->
+    <link rel="stylesheet" href="style/mainStyle.css" />
+    <title>Welcome to Jayentom!</title>
+  </head>
+  <body>
+    <!-- 시계부분이다. -->
+    <div class="js-clock clock">
+      <div class="clockText">00:00:00</div>
+      <div class="dateText"></div>
+    </div>
+    <form class="js-nameForm nameForm">
+      <input type="text" placeholder="What is your name!" />
+    </form>
+    <span class="greeting"></span>
+    <form class="js-toDoForm toDoForm">
+      <input type="text" placeholder="Write your to do!" />
+    </form>
+    <div class="js-listBox">
+      <ul class="toDolist"></ul>
+    </div>
+  </body>
+  <script src="js/clock.js"></script>
+  <script src="js/greeting.js"></script>
+  <script src="js/toDoList.js"></script>
+</html>

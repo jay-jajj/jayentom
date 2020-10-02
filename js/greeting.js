@@ -1,7 +1,8 @@
+//이름을 받을 태그들을 dom으로 불러옴
 const nameForm = document.querySelector(".js-nameForm"),
   input = nameForm.querySelector("input"),
   greeting = document.querySelector(".greeting");
-
+//로컬 스토리지 이름과 클래스 네임
 const USER_LS = "currentUser",
   NAMEFORM_CL = "nameForm",
   SHOWING_CL = "showing";
@@ -19,12 +20,15 @@ function getTime() {
   }
   return time;
 }
-
+//로컬 스토리지에 이름을저장
 function saveName(name) {
+  //로컬스토리지는 브라우저가 기억하는 공간이다.
+  //localStorage.setItem은 저장할 이름과 데이터를 넣어줘야 한다.
   localStorage.setItem(USER_LS, name);
 }
 
 function handleSubmit(event) {
+  //기본 동작을 막는 단계 기본적인 동작을 막아버린다.
   event.preventDefault();
   const userName = input.value;
   paintGreeting(userName);

@@ -7,7 +7,7 @@ function getTime() {
   const hour = time.getHours();
   const min = time.getMinutes();
   const sec = time.getSeconds();
-
+  //삼항연산자에 대해서 배움 미니 if문  첫번째가 true일때 뒤에가 else일때
   clockText.innerText = `${hour < 10 ? `0${hour}` : hour}:${
     min < 10 ? `0${min}` : min
   }:${sec < 10 ? `0${sec}` : sec}`;
@@ -51,6 +51,7 @@ function dayChanger(day) {
 function init() {
   getTime();
   getDate();
+  //setInterval함수는 일정시간마다 실행시키는 함수 첫번째인자로는 실행시킬 함수, 두번째는 시간
   setInterval(getTime, 1000);
 }
 

@@ -14,6 +14,9 @@ function loadToDoList() {
 
 function handleSubmit(event) {
   event.preventDefault();
+  const currentValue = toDoInput.value;
+  paintToDoList(currentValue);
+  toDoInput.value = "";
 }
 
 function init() {

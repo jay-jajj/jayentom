@@ -16,10 +16,12 @@ function getTime() {
 function getDate() {
   const date = new Date();
   const year = date.getFullYear();
-  const month = date.getMonth();
-  const cureentdate = date.getDate();
+  const month = date.getMonth() + 1;
+  const currentdate = date.getDate();
   const day = dayChanger(date.getDay());
-  dateText.innerText = `${year}/${month}/${cureentdate}/${day}`;
+  dateText.innerText = `${year}/${
+    month < 10 ? `0${month}` : month
+  }/${currentdate}/${day}`;
 }
 
 function dayChanger(day) {

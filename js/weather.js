@@ -13,8 +13,9 @@ function getWeather(lat, lng) {
     })
     .then(function (json) {
       const temp = json.main.temp;
-      const place = json.name;
-      weather.innerText = `${temp} @ ${place}`;
+      const place = json.sys.country;
+      console.log(json);
+      weather.innerText = `${temp}℃@${place}`;
     });
 }
 
@@ -23,8 +24,8 @@ function saveCoords(coordsObj) {
 }
 
 function handleGeoSucces(position) {
-  const latitude = position.coords.latitude;
-  const longitude = position.coords.longitude;
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
   const coordsObj = {
     //이렇게 쓰면 latitude : latitude와 똑같은 것임
     latitude,

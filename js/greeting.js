@@ -12,11 +12,11 @@ function getTime() {
   const hours = parseInt(date.getHours());
   let time = "Welcome!";
   if (hours < 12) {
-    time = "Good morning";
+    time = "Good morning!\n";
   } else if (hours >= 12 && hours <= 18) {
-    time = "Good afternoon";
+    time = "Good afternoon!\n";
   } else {
-    time = "Good evening";
+    time = "Good evening!\n";
   }
   return time;
 }
@@ -46,7 +46,7 @@ function paintGreeting(name) {
   const greet = getTime();
   nameForm.classList.remove(SHOWING_CL);
   greeting.classList.add(SHOWING_CL);
-  greeting.innerText = `${greet} ${name}!`;
+  greeting.innerText = `${greet}${name}`;
 }
 
 function loadName() {

@@ -1,7 +1,7 @@
 const toDoForm = document.querySelector(".js-toDoForm"),
   toDoInput = toDoForm.querySelector("input"),
-  listBox = document.querySelector(".js-listBox"),
-  completeBox = document.querySelector(".js-completeBox");
+  todoList = document.querySelector(".js-todoList"),
+  completeList = document.querySelector(".js-completeList");
 
 const TODOS_LS = "toDos",
   BTN_CL = "btn",
@@ -17,7 +17,7 @@ function deletTodo(event) {
   //부모 노드를 저장
   const li = btn.parentNode;
   //리스트를 삭제
-  listBox.removeChild(li);
+  todoList.removeChild(li);
   //filer함수는 foreach함수와 같이 배열에 사용하는 함수이다.
   //foreach함수와 같이 배열의 모든 항목에 함수를 적용하는데
   //차이점은 함수가 적용된 배열을 만들어 준다.(return해준다.)
@@ -36,7 +36,7 @@ function saveToDos() {
 
 function completeToDos(event) {
   const li = event.target.parentNode.childNodes;
-  console.log(li);
+  const text = li[0].innerText;
   paintCompleteList(text);
   deletTodo(event);
 }
@@ -60,7 +60,7 @@ function paintToDoList(text) {
   li.appendChild(delBtn);
   li.appendChild(completeBtn);
   li.id = newId;
-  listBox.appendChild(li);
+  todoList.appendChild(li);
   const toDoObj = {
     text: text,
     id: newId
@@ -82,7 +82,7 @@ function loadToDoList() {
   }
 }
 
-function loadCompleteList(){
+function loadCompleteList() {
   const loadedcompletes = localStorage.getItem(COMPLETE_LS);
   if (loadedcompletes !== null) {
     const parsedcompletes = JSON.parse(loadedcompletes);
@@ -95,26 +95,26 @@ function loadCompleteList(){
   }
 }
 
-function paintCompleteList(completes) {
+function paintCompleteList(text) {
   const li = document.createElement("li");
   const span = document.createElement("span");
   const delBtn = document.createElement("button");
-  const newId = completes.length + 1;
+  const newId = completes_AR.length + 1;
   //이모지도 string이다. window + . 해주면 쓸수있다.
   delBtn.innerText = "🗑";
-  delBtn.addEventListener("click", deletTodo);
+  delBtn.addEventListener("click", deleteComplete);
   delBtn.classList.add(BTN_CL);
-  span.innerText = todo;
+  span.innerText = text;
   //자식을 추가하는것
   li.appendChild(span);
   li.appendChild(delBtn);
   li.id = newId;
-  completeBox.appendChild(li);
+  completeList.appendChild(li);
   const completeObj = {
-    text: text,
+    text,
     id: newId
   };
-  completes.push(completeObj);
+  completes_AR.push(completeObj);
   saveComplete();
 }
 function deleteComplete(event) {
@@ -123,19 +123,19 @@ function deleteComplete(event) {
   //부모 노드를 저장
   const li = btn.parentNode;
   //리스트를 삭제
-  listBox.removeChild(li);
+  completeList.removeChild(li);
   //filer함수는 foreach함수와 같이 배열에 사용하는 함수이다.
   //foreach함수와 같이 배열의 모든 항목에 함수를 적용하는데
   //차이점은 함수가 적용된 배열을 만들어 준다.(return해준다.)
-  const cleanComplete = completes.filter(function (complete) {
+  const cleanComplete = completes_AR.filter(function (complete) {
     //배열에 항목을 넣는 부분이다.
     return complete.id !== parseInt(li.id);
   });
-  toDos = cleanComplete;
+  completes_AR = cleanComplete;
   saveComplete();
 }
 function saveComplete() {
-  localStorage.setItem(COMPLETE_LS, JSON.stringify(completes));
+  localStorage.setItem(COMPLETE_LS, JSON.stringify(completes_AR));
 }
 
 function handleSubmit(event) {
